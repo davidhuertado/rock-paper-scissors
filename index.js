@@ -14,9 +14,9 @@ function playRound(playerSelection, computerSelection) {
     let upperComputerSelection = computerSelection.toUpperCase();
 
     //Mensaje de resultado
-    let playerWins = "You win! " + upperPlayerSelection +  " beats " + upperComputerSelection;
-    let computerWins = "You lose! " + upperComputerSelection +  " beats " + upperPlayerSelection;
-    let draw = "Draw";
+    let playerWins = 1;
+    let computerWins = 0;
+    let draw = 3;
 
     if (upperPlayerSelection === "ROCK" && upperComputerSelection === "SCISSORS") {
         return playerWins; 
@@ -44,5 +44,29 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 1; i <= 5; i++) {
+        let playerSelection = prompt("Rock, Paper or Scissors");
+        let computerSelection = computerPlay();
+
+       let resultEachRound = playRound(playerSelection, computerSelection);
+
+       if (resultEachRound === 1) {
+           playerScore++;
+           console.log("You win the round. " + playerSelection.toUpperCase() + " beats " + computerSelection.toUpperCase());
+       }
+       else if (resultEachRound === 0) {
+           computerScore++;
+           console.log("You lose the round. " + computerSelection.toUpperCase() + " beats " + playerSelection.toUpperCase());
+       }
+       else if (resultEachRound === 3) {
+           console.log("Draw");
+       }
+    }
+
+    if (playerScore > computerScore) return console.log("You win");
+    else if (computerScore > playerScore) return console.log("You lose");
+    else return console.log("Draw");
 }
